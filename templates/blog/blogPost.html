@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Blog post {% endblock title %}
+{% block body %}
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-8 blog-main">
+            <h3 class="font-italic">From the iCoder</h3>   
+            <div class="blog-post">
+            <h2 class="blog-post-title">{{post.title}}</h2>
+        <p class="blog-post-meta">{{post.timeStamp}} by <a href="#">{{post.author}}</a></p>
+                <p>{{post.content}}</P>
+                </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+
+        <aside class="col-md-4 blog-sidebar">
+            <div class="p-4 mb-3 bg-light rounded">
+                <h4 class="font-italic">About</h4>
+                <p class="mb-0">iCoder <em>started out as a small project and is now</em> the fastest growing e-commerce
+                    stores of all times in india and abroad.</p>
+                
+            <img src="" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail" />
+            <title>Placeholder</title></img>
+
+
+        </aside><!-- /.blog-sidebar -->
+        <div class="mb-3">
+            <h1>Anotehr blogs</h1>
+            <a href="/blog/">Visit another blogs</a>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock body %}
