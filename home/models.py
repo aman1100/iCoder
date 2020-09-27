@@ -1,6 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
 
 # Create your models here.
+class UserInfo(AbstractUser):
+    phone = models.CharField(max_length=13)
+    designation = models.CharField(max_length=50)
+    branch = models.CharField(max_length=50)
+    gender = models.CharField( max_length=50)
+
+    
 class Contact(models.Model):
     sno = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)

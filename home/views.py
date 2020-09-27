@@ -43,6 +43,8 @@ def handleSignup(request):
         firstname=request.POST['firstname']
         lastname=request.POST['lastname']
         phone=request.POST['phone']
+        designation = request.POST['designation']
+        branch = request.POST['branch']
         email=request.POST['email']
         password=request.POST['password']
         conpassword=request.POST['conpassword']
@@ -66,7 +68,7 @@ def handleSignup(request):
         myuser.first_name = firstname
         myuser.last_name = lastname
         myuser.save()
-        messages.success(request,"Your account has been successfully created")
+        messages.success(request,"Your account has been successfully created please login")
         return redirect('home')
     else:
         return HttpResponse('404 - Not Found')
