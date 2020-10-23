@@ -4,6 +4,7 @@ from blog.models import Post
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from . models import Profile
 
 # Create your views here.
 
@@ -68,6 +69,8 @@ def handleSignup(request):
         myuser.first_name = firstname
         myuser.last_name = lastname
         myuser.save()
+        extendUser =Profile(firstName=firstname,lastName=lastname,username=username,phone=phone,designation=designation,branch=branch,gender=gender,user=myuser)
+        extendUser.save()
         messages.success(request,"Your account has been successfully created please login")
         return redirect('home')
     else:
@@ -82,8 +85,23 @@ def handleLogin(request):
         user = authenticate(username = loginusername , password =loginpassword)
         if user is not None:
             login(request,user)
-            messages.success(request,"successfully logged in")
-            return redirect('home')
+            userProfile = Profile.objects.filter(user=user)[0]
+            print(userProfile)
+            user_desigantion = userProfile.designation
+            print(user_desigantion)
+            # messages.success(request,"successfully logged in")
+            # return redirect('home')
+            if user_desigantion == 'Principal':
+                return redirect('principal')
+            if user_desigantion == 'Head of department(HOD)':
+                return render(request,'home/hod.html')
+            if user_desigantion == 'Lecturer':
+                return render(request,'home/lecturer.html')
+            if user_desigantion == 'Guest Lecturer':
+                return render(request,'home/guestLecturer.html')
+            if user_desigantion == 'Admin':
+                return render(request,'home/admin.html')
+            
         else:
             messages.error(request,"username password incorrect")
             return redirect('home')
@@ -94,3 +112,11 @@ def handleLogout(request):
     logout(request)
     messages.success(request,"successfully logged out")
     return redirect('home')
+
+def principal(request):
+    users = Profile.objects.all()
+    hod = Profile.objects.filter(designation='Head of department(HOD)')
+    lecturer = Profile.objects.filter(designation='Lecturer')
+    guestLecturer = Profile.objects.filter(designation='Guest Lecturer')
+    params = {'users':users,'hod':hod,'lecturer':lecturer,'guestLecturer':guestLecturer}
+    return render(request,'home/principal.html',params)

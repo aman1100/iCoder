@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block css %}
+body
+{
+    counter-reset: Count-Value;     
+}
+table
+{
+    border-collapse: separate;
+}
+
+.hod td:first-child:before
+{
+   counter-increment: Count-Value;   
+  content: "Row:" counter(Count-Value);
+}
+.l
+{
+    counter-reset: Count-Value;
+}
+.lecturer td:first-child:before
+{
+  counter-increment: Count-Value;   
+  content: "Row:" counter(Count-Value);
+}
+
+.gl{
+    counter-reset: Count-Value ;
+}
+.guestlecturer td:first-child:before
+{
+    
+  counter-increment: Count-Value;   
+  content: "Row:" counter(Count-Value);
+}
+{% endblock css %}
+{% block body %}
+<div class='container mt-4'>
+    <h2>
+        Heads 0f Department
+    </h2>
+    <div class='container mt-4'>
+        <table class="table table-hover">
+            <thead class="table-success">
+                <tr>
+                    <th scope="col">S no.</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Branch</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in hod%}
+                <tr class='hod'>
+                
+                    <td scope="row"></td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.phone}}</td>
+                    <td>{{user.designation}}</td>
+                    <td>{{user.branch}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.gender}}</td>
+                </tr>
+
+            </tbody>
+            {% endfor%}
+        </table>
+    </div>
+    <h2>
+        Lecturers
+    </h2>
+    <div class='container mt-4'>
+        <table class="table table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">S no.</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Branch</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Gender</th>
+                </tr>
+            </thead>
+            <tbody  class='l'>
+                {% for user in lecturer%}
+                <tr class='lecturer'>
+                    <td scope="row"></td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.phone}}</td>
+                    <td>{{user.designation}}</td>
+                    <td>{{user.branch}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.gender}}</td>
+                </tr>
+
+            </tbody>
+            {% endfor%}
+        </table>
+
+
+
+
+        <h2>
+            Guest Lecturers
+        </h2>
+        <div class='container mt-4'>
+            <table class="table table-hover">
+                <thead class="table-warning">
+                    <tr>
+                        <th scope="col">S no.</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Designation</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Gender</th>
+                    </tr>
+                </thead>
+                <tbody class="gl">
+                    {% for user in guestLecturer%}
+                    <tr class='guestlecturer'>
+                        <td scope="row"></td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.phone}}</td>
+                        <td>{{user.designation}}</td>
+                        <td>{{user.branch}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.gender}}</td>
+                    </tr>
+
+                </tbody>
+                {% endfor%}
+            </table>
+
+
+
+
+            {% endblock body %}
+
+            {% block title %} Principal {% endblock title %}
+            {% block homeactive %} active {% endblock homeactive %}

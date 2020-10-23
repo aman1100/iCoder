@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Contact,UserInfo
+from .models import Contact,Profile
 # Register your models here.
 
 admin.site.register(Contact)
-admin.site.register(UserInfo)
+admin.site.register(Profile)
